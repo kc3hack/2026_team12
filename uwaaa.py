@@ -1,1 +1,1 @@
-
+print("Oh FUCK")
