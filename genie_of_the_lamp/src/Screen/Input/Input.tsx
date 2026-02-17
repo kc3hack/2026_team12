@@ -28,7 +28,9 @@ const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
             name: text,
           })
         }
-      ></button>
+      >
+        次へ
+      </button>
       {/* 仮で表示 */}
       <p>{text}</p>
       <div>{children}</div>
