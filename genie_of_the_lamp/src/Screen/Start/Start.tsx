@@ -16,12 +16,14 @@ const StartScene = ({ onStart, children }: IStartScene) => {
   const explanation = "説明文章";
 
   return (
-    <div className="">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-900 text-white">
       {/* アプリ名 */}
-      <h1 className="text-4xl font-bold text-white">{appName}</h1>
+      <h1 className="text-4xl font-bold text-white flex justify-center">
+        {appName}
+      </h1>
 
       {/* 説明文 */}
-      <p className="max-w-md text-lg leading-relaxed text-slate-200">
+      <p className="max-w-md text-lg leading-relaxed text-slate-200 ">
         {explanation}
       </p>
 
