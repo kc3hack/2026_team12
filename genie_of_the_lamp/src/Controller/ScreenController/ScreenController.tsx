@@ -3,6 +3,7 @@ import type { ScreenController } from "../component";
 import type { Question, EffectFn } from "../../Component/types";
 import type { Merchandise } from "../../Screen/Input/Input";
 import { mockQuestions } from "../../Component/mock";
+import Header from "../../Header/Header";
 
 export interface IDefaultScreenController extends ScreenController {}
 
@@ -60,6 +61,32 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
     update();
   };
 
+  const handleBackStart = () => {
+    setCurrentScreen("start");
+    setCurrentQuestionIndex(0);
+    setCurrentScore(0.5);
+    setItemName("");
+    update();
+  };
+
+  const handleBackQuestion = () => {
+    if (currentScreen === "question") {
+      if (currentQuestionIndex > 0) {
+        setCurrentQuestionIndex(currentQuestionIndex - 1);
+      } else {
+        setCurrentScreen("input");
+      }
+      update();
+      return;
+    }
+
+    if (currentScreen === "result") {
+      setCurrentScreen("question");
+      setCurrentQuestionIndex(Math.max(questions.length - 1, 0));
+      update();
+    }
+  };
+
   let rt: JSX.Element;
   // 現在の画面に応じてJSXを返す
   switch (currentScreen) {
@@ -103,7 +130,14 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
       });
   }
 
-  return <div className="app-container">{rt}</div>;
+  return (
+    <div className="app-container flex min-h-screen">
+      <aside className="w-56 shrink-0 p-4">
+        <Header backStart={handleBackStart} backQuestion={handleBackQuestion} />
+      </aside>
+      <main className="flex-1">{rt}</main>
+    </div>
+  );
 };
 
 export default DefaultScreenController;
