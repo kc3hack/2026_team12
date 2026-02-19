@@ -161,7 +161,7 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
 
   return (
     <div className="app-container flex min-h-screen">
-      <aside className="w-56 shrink-0 p-4">
+      <aside className="w-56 shrink-0 p-4" style={{background:"lightblue"}}>
         <Header backStart={handleBackStart} backQuestion={handleBackQuestion} />
       </aside>
       <main className="flex-1">{rt}</main>

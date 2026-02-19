@@ -8,7 +8,7 @@ const Header = ({ backStart, backQuestion }: IHeader) => {
     padding:"0.5rem",
     border:"2px solid",
     color:"#ffffcc",
-    background:"#444400",
+    background:"#cdcd00",
     borderRadius:"0.5rem",
     margin:"0.4rem"
   }

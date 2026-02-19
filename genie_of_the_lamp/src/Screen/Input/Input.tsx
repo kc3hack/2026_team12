@@ -13,8 +13,8 @@ export interface IInputScreen extends InputScreen {
 const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
   const [message, setMessage] = useState(
     <div style={{ textAlign: "center", margin: "0px auto" }}>
-      やあ！<br></br>私はランプのお兄さんだよ！ <br></br>
-      君の物欲を調べてあげよう！
+      やあ😄<br></br>私はアルコールランプの魔人だよ🥺❤️ <br></br>
+      君の物欲を調べてあげよう🤪
     </div>,
   );
   const [text, setText] = useState("");
@@ -22,14 +22,18 @@ const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
 
   const handleClick = () => {
     setShowButton(true);
-    setMessage(<div>これで大丈夫かな？</div>);
+    setMessage(<div>これで大丈夫かな？🌕</div>);
   };
 
   return (
-    <div className="space-y-6 min-h-screen flex flex-col items-center justify-center bg-slate-900 text-white">
+    <div
+      className="space-y-6 min-h-screen flex flex-col items-center justify-center text-black"
+      style={{ backgroundColor: "#e0ffff" }}
+    >
       <div
-        className="flex w-96 h-40 bg-gray-200 text-black rounded-2xl text-3xl text-center items-center"
+        className="flex w-96 h-40 text-black rounded-2xl text-3xl text-center items-center"
         style={{
+          backgroundColor: "#fffacd",
           fontSize: "1.5rem",
           padding: "0.5rem 1rem",
           marginLeft: "5rem",
@@ -52,7 +56,7 @@ const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
           <div>
             <button
               onClick={handleClick}
-              className="rounded-xl bg-cyan-300 font-semibold text-purple-900 shadow-lg transition hover:bg-yellow-300 active:scale-95"
+              className="rounded-xl bg-cyan-300 font-semibold text-black shadow-lg transition hover:bg-yellow-300 active:scale-95"
               style={{
                 fontSize: "1.125rem",
                 padding: "0.75rem 2rem",
@@ -68,7 +72,7 @@ const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
       {showButton && (
         <div>
           <p
-            className="text-white rounded-md text-center h-10"
+            className="text-black rounded-md text-center h-10"
             style={{
               width: "25rem",
               fontSize: "1.5rem",
@@ -85,7 +89,7 @@ const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
                 name: text,
               })
             }
-            className="rounded-xl bg-cyan-300 font-semibold text-purple-900 shadow-lg transition hover:bg-yellow-300 active:scale-95"
+            className="rounded-xl bg-cyan-300 font-semibold text-black shadow-lg transition hover:bg-yellow-300 active:scale-95"
             style={{
               fontSize: "1.125rem",
               padding: "0.75rem 2rem",
