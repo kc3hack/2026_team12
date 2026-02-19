@@ -2,7 +2,7 @@ import React, { useState, type JSX } from "react";
 import type { ScreenController } from "../component";
 import type { Question, EffectFn } from "../../Component/types";
 import type { Merchandise } from "../../Screen/Input/Input";
-import { mockQuestions } from "../../Component/mock";
+import { AllQuestions } from "../../Component/questions";
 import Header from "../../UI/Header/Header";
 import DemonImage from "../../UI/Demon/Demon";
 
@@ -21,7 +21,7 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
   >("start");
 
   // ダミーの質問データ（実際のデータに置き換え予定）
-  const [questions] = useState<Question[]>(mockQuestions);
+  const [questions] = useState<Question[]>(AllQuestions);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentScore, setCurrentScore] = useState(0.5); // 初期スコア 50%

@@ -1,31 +1,31 @@
 {
-  "answer":[
+  "answer": [
     {
-      "key":"normal",
-      "labels":[
-        { "label": "はい", "effect": {"weight":1.2} },
-        { "label": "いいえ", "effect": {"weight":0.8} },
-        { "label": "わからない", "effect": {"weight":1.0} },
-        { "label": "多分そう 部分的にそう", "effect": {"weight":1.1} },
-        { "label": "多分違う そうでもない", "effect": {"weight":0.9} }
+      "key": "normal",
+      "labels": [
+        { "label": "はい", "effect": { "weight": 1.2 } },
+        { "label": "いいえ", "effect": { "weight": 0.8 } },
+        { "label": "わからない", "effect": { "weight": 1.0 } },
+        { "label": "多分そう 部分的にそう", "effect": { "weight": 1.1 } },
+        { "label": "多分違う そうでもない", "effect": { "weight": 0.9 } }
       ]
     }
   ],
-  "questions":[
+  "questions": [
     {
       "id": "q1",
       "text": "それは、今持っているもので代用できませんか？",
-      "options":"normal"
+      "options": "normal"
     },
     {
       "id": "q2",
       "text": "一ヶ月後、それを使いこなしている自分を想像できますか？",
-      "options":"normal"
+      "options": "normal"
     },
     {
       "id": "q3",
       "text": "もし今、値段が1.5倍に上がっても買いますか？",
-      "options":"normal"
+      "options": "normal"
     }
   ]
 }

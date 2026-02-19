@@ -39,11 +39,13 @@ const clampScore = (score: number): number => {
 // "Purchase Propensity (PP)"
 // (購買傾向値）
 // の計算
-const createEffect = (weight?: number, constant?: number) => (score: number): number => {
-  const appliedWeight = weight ?? DEFAULT_WEIGHT;
-  const appliedConstant = constant ?? DEFAULT_CONSTANT;
-  return clampScore(score * appliedWeight + appliedConstant);
-};
+const createEffect =
+  (weight?: number, constant?: number) =>
+  (score: number): number => {
+    const appliedWeight = weight ?? DEFAULT_WEIGHT;
+    const appliedConstant = constant ?? DEFAULT_CONSTANT;
+    return clampScore(score * appliedWeight + appliedConstant);
+  };
 
 const createOptions = (answer: AnswerDefinition): Purchasability[] => {
   return answer.labels.map((option) => ({
@@ -61,7 +63,7 @@ const createAnswerMap = (): Map<string, AnswerDefinition> => {
   );
 };
 
-export const mockQuestions: Question[] = (function () {
+export const AllQuestions: Question[] = (function () {
   const answerMap = createAnswerMap();
 
   return questionData.questions.map((question) => {
@@ -73,3 +75,5 @@ export const mockQuestions: Question[] = (function () {
     };
   });
 })();
+
+export const FilterQuestion = () => {};
