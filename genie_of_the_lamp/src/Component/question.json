@@ -1,35 +1,52 @@
-[
-  {
-    "id": "q1",
-    "text": "それは、今持っているもので代用できませんか？",
-    "options": [
-      { "label": "はい", "effect": 1.0 },
-      { "label": "いいえ", "effect": 0.4 },
-      { "label": "わからない", "effect": 0.8 },
-      { "label": "多分そう 部分的にそう", "effect": 0.9 },
-      { "label": "多分違う そうでもない", "effect": 0.7 }
-    ]
-  },
-  {
-    "id": "q2",
-    "text": "一ヶ月後、それを使いこなしている自分を想像できますか？",
-    "options": [
-      { "label": "はい", "effect": 1.0 },
-      { "label": "いいえ", "effect": 0.4 },
-      { "label": "わからない", "effect": 0.8 },
-      { "label": "多分そう 部分的にそう", "effect": 0.9 },
-      { "label": "多分違う そうでもない", "effect": 0.7 }
-    ]
-  },
-  {
-    "id": "q3",
-    "text": "もし今、値段が1.5倍に上がっても買いますか？",
-    "options": [
-      { "label": "はい", "effect": 1.0 },
-      { "label": "いいえ", "effect": 0.4 },
-      { "label": "わからない", "effect": 0.8 },
-      { "label": "多分そう 部分的にそう", "effect": 0.9 },
-      { "label": "多分違う そうでもない", "effect": 0.7 }
-    ]
-  }
-]
+{
+  "answer": [
+    {
+      "key": "normal",
+      "labels": [
+        { "label": "はい", "effect": { "weight": 1.5 } },
+        { "label": "いいえ", "effect": { "weight": 0.5 } },
+        { "label": "わからない", "effect": { "weight": 1.0 } },
+        { "label": "多分そう 部分的にそう", "effect": { "weight": 1.15 } },
+        { "label": "多分違う そうでもない", "effect": { "weight": 0.85 } }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "それは、今持っているもので代用できませんか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q2",
+      "text": "一ヶ月後、それを使いこなしている自分を想像できますか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q3",
+      "text": "もし今、値段が1.5倍に上がっても買いますか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q4",
+      "text": "今日、すでにそれについて考えましたか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q5",
+      "text": "もし今すぐそれが手に入ったら、初日に何をするか、手順が明確に決まっていますか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q6",
+      "text": "それに関連する販売ページやレビューを閲覧しましたか？",
+      "options": "normal",
+      "filter": ["all"]
+    }
+  ]
+}

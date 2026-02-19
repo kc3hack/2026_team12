@@ -1,10 +1,12 @@
-import React, { useState, type JSX } from "react";
+import React, { useState, useEffect, type JSX } from "react";
 import type { ScreenController } from "../component";
 import type { Question, EffectFn } from "../../Component/types";
 import type { Merchandise } from "../../Screen/Input/Input";
-import { mockQuestions } from "../../Component/mock";
+import { AllQuestions } from "../../Component/questions";
 import Header from "../../UI/Header/Header";
 import DemonImage from "../../UI/Demon/Demon";
+
+const DEFAULT_SCORE = 0.5;
 
 export interface IDefaultScreenController extends ScreenController {}
 
@@ -21,10 +23,17 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
   >("start");
 
   // ダミーの質問データ（実際のデータに置き換え予定）
-  const [questions] = useState<Question[]>(mockQuestions);
+  const [questions, setQuestions] = useState<Question[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const loadedQuestions = await AllQuestions;
+      setQuestions(loadedQuestions);
+    })();
+  }, []);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [currentScore, setCurrentScore] = useState(0.5); // 初期スコア 50%
+  const [currentScore, setCurrentScore] = useState(DEFAULT_SCORE);
   const [itemName, setItemName] = useState("");
 
   // 各画面のコールバック実装
@@ -41,7 +50,7 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
   };
 
   const handleAnswer = (effect: EffectFn) => {
-    const newScore = effect(currentScore);
+    const newScore = effect(currentScore, currentQuestionIndex);
     setCurrentScore(newScore);
 
     if (currentQuestionIndex + 1 >= questions.length) {
@@ -57,7 +66,7 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
   const handleRetry = () => {
     setCurrentScreen("start");
     setCurrentQuestionIndex(0);
-    setCurrentScore(0.5);
+    setCurrentScore(DEFAULT_SCORE);
     setItemName("");
     update();
   };
@@ -65,7 +74,7 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
   const handleBackStart = () => {
     setCurrentScreen("start");
     setCurrentQuestionIndex(0);
-    setCurrentScore(0.5);
+    setCurrentScore(DEFAULT_SCORE);
     setItemName("");
     update();
   };
@@ -106,13 +115,21 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
       break;
 
     case "question":
-      rt = question[0]({
-        type: "question",
-        question: questions[currentQuestionIndex],
-        currentIndex: currentQuestionIndex + 1,
-        totalQuestions: questions.length,
-        onAnswer: handleAnswer,
-      });
+      if (questions.length === 0) {
+        rt = (
+          <div className="flex items-center justify-center min-h-screen text-white text-xl">
+            読み込み中...
+          </div>
+        );
+      } else {
+        rt = question[0]({
+          type: "question",
+          question: questions[currentQuestionIndex],
+          currentIndex: currentQuestionIndex + 1,
+          totalQuestions: questions.length,
+          onAnswer: handleAnswer,
+        });
+      }
       break;
 
     case "result":
