@@ -1,10 +1,10 @@
-import type { Purchasability, Question } from "./types";
+import type { Purchasability, PurchaseThingType, Question } from "./types";
 import questionData from "./question.json";
 
 const DEFAULT_CONSTANT = 0.0;
 const DEFAULT_WEIGHT = 1.0;
 
-type AnswerDefinition = {
+interface AnswerDefinition {
   key: string;
   labels: {
     label: string;
@@ -13,7 +13,7 @@ type AnswerDefinition = {
       constant?: number;
     };
   }[];
-};
+}
 
 const DEFAULT_ANSWER: AnswerDefinition = {
   key: "normal",
@@ -63,6 +63,13 @@ const createAnswerMap = (): Map<string, AnswerDefinition> => {
   );
 };
 
+const CreateFilterSet = (v: PurchaseThingType[]): Set<PurchaseThingType> => {
+  const result = new Set<PurchaseThingType>();
+  for (let i = 0; i < v.length; i++) {
+    result.add(v[i]);
+  }
+  return result;
+};
 export const AllQuestions: Question[] = (function () {
   const answerMap = createAnswerMap();
 
@@ -72,8 +79,31 @@ export const AllQuestions: Question[] = (function () {
       id: question.id,
       text: question.text,
       options: createOptions(answerDefinition),
+      filter: {
+        type: CreateFilterSet(question.filter as PurchaseThingType[]),
+      },
     };
   });
 })();
 
-export const FilterQuestion = () => {};
+interface FilterOption {
+  type: PurchaseThingType[];
+}
+export const FilterQuestion = (filterOption: FilterOption): Question[] => {
+  const result: Question[] = [];
+  for (let i = 0; i < AllQuestions.length; i++) {
+    let isAdd = false;
+    const filter = AllQuestions[i].filter;
+    if(filter.type.has("all")){
+      result.push(AllQuestions[i]);
+      continue ;
+    }
+    for (let j = 0; j < filterOption.type.length; j++) {
+      isAdd = isAdd || filter.type.has(filterOption.type[j]);
+    }
+    if (isAdd) {
+      result.push(AllQuestions[i]);
+    }
+  }
+  return result;
+};

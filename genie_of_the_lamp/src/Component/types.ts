@@ -23,6 +23,19 @@ export interface Purchasability {
   effect: EffectFn;
 }
 
+export type PurchaseThingType =
+  | "food"
+  | "furniture"
+  | "fashion"
+  | "electronics"
+  | "books"
+  | "hobby"
+  | "all"
+  | "other";
+
+export interface FilteringOption {
+  type: Set<PurchaseThingType>;
+}
 /**
  * 魔神が投げる質問の定義
  */
@@ -36,4 +49,8 @@ export type Question = {
    * 質問に対する回答
    */
   options: Purchasability[];
+  /**
+   * Filterよう
+   */
+  filter: FilteringOption;
 };

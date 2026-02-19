@@ -15,17 +15,20 @@
     {
       "id": "q1",
       "text": "それは、今持っているもので代用できませんか？",
-      "options": "normal"
+      "options": "normal",
+      "filter": ["all"]
     },
     {
       "id": "q2",
       "text": "一ヶ月後、それを使いこなしている自分を想像できますか？",
-      "options": "normal"
+      "options": "normal",
+      "filter": ["all"]
     },
     {
       "id": "q3",
       "text": "もし今、値段が1.5倍に上がっても買いますか？",
-      "options": "normal"
+      "options": "normal",
+      "filter": ["all"]
     }
   ]
 }
