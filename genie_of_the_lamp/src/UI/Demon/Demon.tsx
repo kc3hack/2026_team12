@@ -14,14 +14,16 @@ const Demon = () => {
 
 const DemonImage = () => {
   return (
-    <div style={{ 
-      position: "absolute" ,
-      bottom:"0px",
-      left:"0px",
-      pointerEvents: "none",
-    }}>
+    <div
+      style={{
+        position: "absolute",
+        bottom: "0px",
+        left: "0px",
+        pointerEvents: "none",
+      }}
+    >
       <Demon></Demon>
     </div>
-  )
-}
-export default DemonImage ;
+  );
+};
+export default DemonImage;
