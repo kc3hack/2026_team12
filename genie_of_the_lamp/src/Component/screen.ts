@@ -1,4 +1,4 @@
-import type { Merchandise } from "../Screen/Input/input_screen";
+import type { Merchandise } from "../Screen/Input/Input";
 import type { Drawable } from "./abstract";
 import type { Question, EffectFn } from "./types"; // 先ほどの型
 

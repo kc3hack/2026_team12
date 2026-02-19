@@ -1,10 +1,10 @@
-import LampIntroduceScreen from "./lamp/Lamp";
+import MainController from "./Controller/MainController";
 
 function App() {
   return (
     <div>
       <div>
-        <LampIntroduceScreen />
+        <MainController></MainController>
       </div>
     </div>
   );
