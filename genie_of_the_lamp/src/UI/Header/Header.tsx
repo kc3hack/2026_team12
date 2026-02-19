@@ -6,11 +6,12 @@ interface IHeader {
 const Header = ({ backStart, backQuestion }: IHeader) => {
   const buttonCSS = {
     padding:"0.5rem",
-    border:"2px solid",
-    color:"#ffffcc",
-    background:"#cdcd00",
+    border:"thick double #98882e",
+    color:"#000000",
+    background:"#ffffdc",
     borderRadius:"0.5rem",
-    margin:"0.4rem"
+    margin:"0.4rem",
+    boxShadow: "8px 8px 2px 1px rgb(0 0 255 / 0.2)",
   }
   return (
     <>

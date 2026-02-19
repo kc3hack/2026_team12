@@ -13,7 +13,7 @@ export interface IInputScreen extends InputScreen {
 const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
   const [message, setMessage] = useState(
     <div style={{ textAlign: "center", margin: "0px auto" }}>
-      やあ😄<br></br>私はアルコールランプの魔人だよ🥺❤️ <br></br>
+      やあ😄<br></br>私はアルコールランプ🫙の魔人🧞だよ🥺❤️ <br></br>
       君の物欲を調べてあげよう🤪
     </div>,
   );
@@ -31,8 +31,10 @@ const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
       style={{ backgroundColor: "#e0ffff" }}
     >
       <div
-        className="flex w-96 h-40 text-black rounded-2xl text-3xl text-center items-center"
+        className="flex text-black rounded-2xl text-3xl text-center items-center"
         style={{
+          width:"75%",
+          height:"12rem",
           backgroundColor: "#fffacd",
           fontSize: "1.5rem",
           padding: "0.5rem 1rem",
