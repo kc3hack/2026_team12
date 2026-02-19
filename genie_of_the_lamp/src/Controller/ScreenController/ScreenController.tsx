@@ -3,7 +3,8 @@ import type { ScreenController } from "../component";
 import type { Question, EffectFn } from "../../Component/types";
 import type { Merchandise } from "../../Screen/Input/Input";
 import { mockQuestions } from "../../Component/mock";
-import Header from "../../Header/Header";
+import Header from "../../UI/Header/Header";
+import DemonImage from "../../UI/Demon/Demon";
 
 export interface IDefaultScreenController extends ScreenController {}
 
@@ -136,6 +137,7 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
         <Header backStart={handleBackStart} backQuestion={handleBackQuestion} />
       </aside>
       <main className="flex-1">{rt}</main>
+      <DemonImage></DemonImage>
     </div>
   );
 };
