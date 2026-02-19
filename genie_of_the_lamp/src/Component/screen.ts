@@ -1,3 +1,4 @@
+import type { Merchandise } from "../Screen/Input/Input";
 import type { Drawable } from "./abstract";
 import type { Question, EffectFn } from "./types"; // 先ほどの型
 
@@ -21,7 +22,7 @@ export interface StartScreen extends Screen {
  */
 export interface InputScreen extends Screen {
   type: "input";
-  onConfirm: (itemName: string) => void; // アイテム確定時
+  onConfirm: (item: Merchandise) => void; // アイテム確定時
 }
 
 /**

@@ -1,0 +1,42 @@
+[
+  {
+    "minScore": 0.9,
+    "message": "即買い決定！",
+    "description": "迷わず手に入れるべき運命の品です",
+    "color": "text-green-400",
+    "bgColor": "from-green-600 to-green-500",
+    "emoji": "✨"
+  },
+  {
+    "minScore": 0.7,
+    "message": "強くお勧めします",
+    "description": "きっと満足できる良い選択です",
+    "color": "text-blue-400",
+    "bgColor": "from-blue-600 to-blue-500",
+    "emoji": "👍"
+  },
+  {
+    "minScore": 0.5,
+    "message": "要検討",
+    "description": "よく考えてから決めることをお勧めします",
+    "color": "text-yellow-400",
+    "bgColor": "from-yellow-600 to-yellow-500",
+    "emoji": "🤔"
+  },
+  {
+    "minScore": 0.3,
+    "message": "慎重に",
+    "description": "本当に必要かもう一度考えてみてください",
+    "color": "text-orange-400",
+    "bgColor": "from-orange-600 to-orange-500",
+    "emoji": "⚠️"
+  },
+  {
+    "minScore": 0.0,
+    "message": "買わない方が良い",
+    "description": "今は控えた方が賢明です",
+    "color": "text-red-400",
+    "bgColor": "from-red-600 to-red-500",
+    "emoji": "🚫"
+  }
+]
