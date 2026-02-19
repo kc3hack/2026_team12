@@ -4,6 +4,14 @@ interface IHeader {
 }
 
 const Header = ({ backStart, backQuestion }: IHeader) => {
+  const buttonCSS = {
+    padding:"0.5rem",
+    border:"2px solid",
+    color:"#ffffcc",
+    background:"#444400",
+    borderRadius:"0.5rem",
+    margin:"0.4rem"
+  }
   return (
     <>
       <div>
@@ -11,12 +19,21 @@ const Header = ({ backStart, backQuestion }: IHeader) => {
           <tbody>
             <tr>
               <td>
-                <button onClick={backStart}>スタート画面に戻る</button>
+                <button 
+                  onClick={backStart}
+                  style={buttonCSS}
+                >
+                  スタート画面に戻る
+                </button>
               </td>
             </tr>
             <tr>
               <td>
-                <button onClick={backQuestion}>質問を戻る</button>
+                <button
+                  style={buttonCSS}
+                  onClick={backQuestion}>
+                  質問を戻る
+                </button>
               </td>
             </tr>
           </tbody>

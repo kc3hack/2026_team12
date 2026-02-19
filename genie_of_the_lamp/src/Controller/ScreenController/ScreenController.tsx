@@ -34,6 +34,7 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentScore, setCurrentScore] = useState(DEFAULT_SCORE);
+  const [scoreHistory, setScoreHistory] = useState<number[]>([DEFAULT_SCORE]);
   const [itemName, setItemName] = useState("");
 
   // 各画面のコールバック実装
@@ -46,12 +47,15 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
     setItemName(item.name);
     setCurrentScreen("question");
     setCurrentQuestionIndex(0);
+    setCurrentScore(DEFAULT_SCORE);
+    setScoreHistory([DEFAULT_SCORE]);
     update();
   };
 
   const handleAnswer = (effect: EffectFn) => {
     const newScore = effect(currentScore, currentQuestionIndex);
     setCurrentScore(newScore);
+    setScoreHistory((prev) => [...prev, newScore]);
 
     if (currentQuestionIndex + 1 >= questions.length) {
       // 最後の質問が終わったので結果画面へ
@@ -67,6 +71,7 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
     setCurrentScreen("start");
     setCurrentQuestionIndex(0);
     setCurrentScore(DEFAULT_SCORE);
+    setScoreHistory([DEFAULT_SCORE]);
     setItemName("");
     update();
   };
@@ -75,6 +80,7 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
     setCurrentScreen("start");
     setCurrentQuestionIndex(0);
     setCurrentScore(DEFAULT_SCORE);
+    setScoreHistory([DEFAULT_SCORE]);
     setItemName("");
     update();
   };
@@ -82,7 +88,10 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
   const handleBackQuestion = () => {
     if (currentScreen === "question") {
       if (currentQuestionIndex > 0) {
-        setCurrentQuestionIndex(currentQuestionIndex - 1);
+        const previousIndex = currentQuestionIndex - 1;
+        setCurrentQuestionIndex(previousIndex);
+        setCurrentScore(scoreHistory[previousIndex] ?? DEFAULT_SCORE);
+        setScoreHistory((prev) => prev.slice(0, previousIndex + 1));
       } else {
         setCurrentScreen("input");
       }
@@ -91,8 +100,10 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
     }
 
     if (currentScreen === "result") {
+      const previousIndex = Math.max(questions.length - 1, 0);
       setCurrentScreen("question");
-      setCurrentQuestionIndex(Math.max(questions.length - 1, 0));
+      setCurrentQuestionIndex(previousIndex);
+      setCurrentScore(scoreHistory[previousIndex] ?? DEFAULT_SCORE);
       update();
     }
   };

@@ -41,8 +41,8 @@ const Demon = () => {
                 alt="kakiuchi"
                 style={{
                   transform: `rotateZ(-10deg)translateY(${position + 3}rem)`,
-                  width: "10rem",
-                  height: "40rem",
+                  width: "7rem",
+                  height: "28rem",
                 }}
               />
             </td>
@@ -51,8 +51,8 @@ const Demon = () => {
                 src={kakiuchiImage}
                 alt="kakiuchi"
                 style={{
-                  width: "10rem",
-                  height: "40rem",
+                  width: "7rem",
+                  height: "28rem",
                   transform: `translateY(${position}rem)`,
                 }}
               />
@@ -62,8 +62,8 @@ const Demon = () => {
                 src={kakiuchiImage}
                 alt="kakiuchi"
                 style={{
-                  width: "10rem",
-                  height: "40rem",
+                  width: "7rem",
+                  height: "28rem",
                   transform: `rotateZ(10deg)translateY(${position + 3}rem)`,
                 }}
               />
