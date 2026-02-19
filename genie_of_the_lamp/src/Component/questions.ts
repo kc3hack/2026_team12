@@ -3,6 +3,7 @@ import questionData from "./question.json";
 
 const DEFAULT_CONSTANT = 0.0;
 const DEFAULT_WEIGHT = 1.0;
+const SCORE_VARIABLE = 4.0;
 
 interface AnswerDefinition {
   key: string;
@@ -18,22 +19,20 @@ interface AnswerDefinition {
 const DEFAULT_ANSWER: AnswerDefinition = {
   key: "normal",
   labels: [
-    { label: "はい", effect: { weight: 1.2 } },
-    { label: "いいえ", effect: { weight: 0.8 } },
+    { label: "はい", effect: { weight: 1.5 } },
+    { label: "いいえ", effect: { weight: 0.5 } },
     { label: "わからない", effect: { weight: 1.0 } },
-    { label: "多分そう 部分的にそう", effect: { weight: 1.1 } },
-    { label: "多分違う そうでもない", effect: { weight: 0.9 } },
+    { label: "多分そう 部分的にそう", effect: { weight: 1.15 } },
+    { label: "多分違う そうでもない", effect: { weight: 0.85 } },
   ],
 };
 
 const clampScore = (score: number): number => {
-  if (score >= 1.0) {
-    return 1.0;
-  }
-  if (score <= 0.0) {
-    return 0.0;
-  }
-  return score;
+  /**
+   * シグモイド関数にしてみた（自然な値になるので）
+   */
+  const result = 1 / (1 + Math.exp(-score * SCORE_VARIABLE));
+  return result;
 };
 
 // "Purchase Propensity (PP)"
@@ -41,10 +40,16 @@ const clampScore = (score: number): number => {
 // の計算
 const createEffect =
   (weight?: number, constant?: number) =>
-  (score: number): number => {
+  (score: number, count: number): number => {
     const appliedWeight = weight ?? DEFAULT_WEIGHT;
     const appliedConstant = constant ?? DEFAULT_CONSTANT;
-    return clampScore(score * appliedWeight + appliedConstant);
+    // スコアは[0,1]なので[-1,1]に変換
+    const forSigmoidScore = (score * appliedWeight - 0.5) * 2;
+    const result =
+      (score * count + clampScore(forSigmoidScore + appliedConstant)) /
+      (count + 1);
+    console.log(result);
+    return result;
   };
 
 const createOptions = (answer: AnswerDefinition): Purchasability[] => {
@@ -94,9 +99,9 @@ export const FilterQuestion = (filterOption: FilterOption): Question[] => {
   for (let i = 0; i < AllQuestions.length; i++) {
     let isAdd = false;
     const filter = AllQuestions[i].filter;
-    if(filter.type.has("all")){
+    if (filter.type.has("all")) {
       result.push(AllQuestions[i]);
-      continue ;
+      continue;
     }
     for (let j = 0; j < filterOption.type.length; j++) {
       isAdd = isAdd || filter.type.has(filterOption.type[j]);

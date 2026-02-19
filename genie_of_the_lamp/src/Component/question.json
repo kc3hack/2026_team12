@@ -3,11 +3,11 @@
     {
       "key": "normal",
       "labels": [
-        { "label": "はい", "effect": { "weight": 1.2 } },
-        { "label": "いいえ", "effect": { "weight": 0.8 } },
+        { "label": "はい", "effect": { "weight": 1.5 } },
+        { "label": "いいえ", "effect": { "weight": 0.5 } },
         { "label": "わからない", "effect": { "weight": 1.0 } },
-        { "label": "多分そう 部分的にそう", "effect": { "weight": 1.1 } },
-        { "label": "多分違う そうでもない", "effect": { "weight": 0.9 } }
+        { "label": "多分そう 部分的にそう", "effect": { "weight": 1.15 } },
+        { "label": "多分違う そうでもない", "effect": { "weight": 0.85 } }
       ]
     }
   ],

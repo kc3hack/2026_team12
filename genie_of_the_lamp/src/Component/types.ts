@@ -7,7 +7,7 @@ type Score = number;
  * 回答によって現在のスコアをどう変化させるかの関数型
  * 例: (current) => current * 0.8  (意欲を20%下げる)
  */
-export type EffectFn = (currentScore: Score) => Score;
+export type EffectFn = (currentScore: Score, count: number) => Score;
 
 /**
  * 回答の選択肢ごとの影響度
