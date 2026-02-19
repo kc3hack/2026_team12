@@ -1,4 +1,4 @@
-import React, { useState, type JSX } from "react";
+import React, { useState, useEffect, type JSX } from "react";
 import type { ScreenController } from "../component";
 import type { Question, EffectFn } from "../../Component/types";
 import type { Merchandise } from "../../Screen/Input/Input";
@@ -23,7 +23,14 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
   >("start");
 
   // ダミーの質問データ（実際のデータに置き換え予定）
-  const [questions] = useState<Question[]>(AllQuestions);
+  const [questions, setQuestions] = useState<Question[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const loadedQuestions = await AllQuestions;
+      setQuestions(loadedQuestions);
+    })();
+  }, []);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentScore, setCurrentScore] = useState(DEFAULT_SCORE);
@@ -108,13 +115,21 @@ const DefaultScreenController: React.FC<IDefaultScreenController> = ({
       break;
 
     case "question":
-      rt = question[0]({
-        type: "question",
-        question: questions[currentQuestionIndex],
-        currentIndex: currentQuestionIndex + 1,
-        totalQuestions: questions.length,
-        onAnswer: handleAnswer,
-      });
+      if (questions.length === 0) {
+        rt = (
+          <div className="flex items-center justify-center min-h-screen text-white text-xl">
+            読み込み中...
+          </div>
+        );
+      } else {
+        rt = question[0]({
+          type: "question",
+          question: questions[currentQuestionIndex],
+          currentIndex: currentQuestionIndex + 1,
+          totalQuestions: questions.length,
+          onAnswer: handleAnswer,
+        });
+      }
       break;
 
     case "result":

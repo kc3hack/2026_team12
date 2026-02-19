@@ -1,5 +1,6 @@
 import type { Purchasability, PurchaseThingType, Question } from "./types";
 import questionData from "./question.json";
+// import CreateAIQuestion from "./AI/create";
 
 const DEFAULT_CONSTANT = 0.0;
 const DEFAULT_WEIGHT = 1.0;
@@ -75,10 +76,10 @@ const CreateFilterSet = (v: PurchaseThingType[]): Set<PurchaseThingType> => {
   }
   return result;
 };
-export const AllQuestions: Question[] = (function () {
+export const AllQuestions: Promise<Question[]> = (async function () {
   const answerMap = createAnswerMap();
 
-  return questionData.questions.map((question) => {
+  const result = questionData.questions.map((question) => {
     const answerDefinition = answerMap.get(question.options) ?? DEFAULT_ANSWER;
     return {
       id: question.id,
@@ -89,25 +90,33 @@ export const AllQuestions: Question[] = (function () {
       },
     };
   });
+  // const ai = await CreateAIQuestion () ;
+  // for(let i = 0 ; i < ai.length ; i ++) {
+  //   result.push(ai[i]) ;
+  // }
+
+  return result;
 })();
 
 interface FilterOption {
   type: PurchaseThingType[];
 }
-export const FilterQuestion = (filterOption: FilterOption): Question[] => {
+export const FilterQuestion = async (
+  filterOption: FilterOption,
+): Promise<Question[]> => {
   const result: Question[] = [];
-  for (let i = 0; i < AllQuestions.length; i++) {
+  for (let i = 0; i < (await AllQuestions).length; i++) {
     let isAdd = false;
-    const filter = AllQuestions[i].filter;
+    const filter = (await AllQuestions)[i].filter;
     if (filter.type.has("all")) {
-      result.push(AllQuestions[i]);
+      result.push((await AllQuestions)[i]);
       continue;
     }
     for (let j = 0; j < filterOption.type.length; j++) {
       isAdd = isAdd || filter.type.has(filterOption.type[j]);
     }
     if (isAdd) {
-      result.push(AllQuestions[i]);
+      result.push((await AllQuestions)[i]);
     }
   }
   return result;
