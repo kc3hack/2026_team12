@@ -54,20 +54,31 @@ const subPage = new Map<string,Page>([
         private sprite : HTMLDivElement = document.createElement("div");
         public name : string = "kakiuchi_sprite" ;
         private x : number = 0 ;
+        public pItem : string = "" ;
+        private isStartInterval : boolean = false ;
         constructor(){
-            const imageUrl : string = chrome.runtime.getURL("bin/Assets/kakiuchi.png");
+            
             this.sprite.style.position = "fixed" ;
             this.sprite.style.bottom = "0rem" ;
             this.sprite.style.left = "0rem" ;
             this.sprite.style.width = "20rem" ;
             this.sprite.style.zIndex = "100000" ;
+            this.updateSprite(
+                `いやー！❤️<br>
+                ランプの魔人だよ😄<br>
+                （アルコール）`
+            );
+            this.sprite.id = "inner_sprite";
+            this.sprite.addEventListener("click",this.onSprite);
+            this.page.appendChild(this.sprite);
+        }
+        private updateSprite (text:string) {
+            const imageUrl : string = chrome.runtime.getURL("bin/Assets/kakiuchi.png");
             this.sprite.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 1rem;">
                     <img src="${imageUrl}" style="flex-shrink: 0; width: 12rem; height: 20rem;">
                     <div class="bubble">
-                        いやー！❤️<br>
-                        ランプの魔人だよ😄<br>
-                        （アルコール）
+                        ${text}
                     </div>
                 </div>
                 <style>
@@ -86,22 +97,49 @@ const subPage = new Map<string,Page>([
                 }
                 </style>
             `;
-            this.sprite.id = "inner_sprite";
-            this.sprite.addEventListener("click",this.onSprite);
-            this.page.appendChild(this.sprite);
         }
-        private onSprite(){
-            open(MAIN_PAGE_URL);
+        private onSprite = ()=>{
+            console.log(this.pItem);
+            const sendData = encodeURIComponent(this.pItem);
+            console.log(sendData);
+            open(`${MAIN_PAGE_URL}/?name=${sendData}`);
         }
         private intervalSetup (){
             // const elm = document.querySelector("#inner_sprite") as HTMLDivElement;
-            setInterval(()=>{
-                this.x += 0.2;
-                this.sprite.style.bottom = `${Math.abs(Math.sin(this.x)*3)}rem`;
-            },20);
+            if(!this.isStartInterval){
+                setInterval(()=>{
+                    this.x += 0.2;
+                    this.sprite.style.bottom = `${Math.abs(Math.sin(this.x)*3)}rem`;
+                },20);
+                this.isStartInterval = true ;
+            }   
+        }
+        private isItemEventSet = false;
+        private updateItem (parent:Element){
+            // 明示的にキャストしておきます
+            let elm = parent.querySelector("#twotabsearchtextbox") ;
+            elm = elm ?? parent.querySelector("#nav-search-keywords") ;
+            if(elm) {
+                elm.addEventListener("input",(e)=>{
+                    const IElm = e.target as HTMLInputElement;
+                    this.pItem = IElm.value ;
+                    if(IElm.value==""){
+                        this.updateSprite(`
+                            アルコールランプ🪔のまじんだよ?<br>
+                            何を買うのかな？
+                        `);
+                    }else{
+                        this.updateSprite( `
+                            君は${IElm.value}が欲しいのかな？？
+                        `);
+                    }
+                })
+                this.isItemEventSet = true ;
+            }
         }
         public render (parent:Element) {
             parent.appendChild(this.page) ;
+            if(!this.isItemEventSet)this.updateItem(parent);
             this.intervalSetup();
         }
     })() ],

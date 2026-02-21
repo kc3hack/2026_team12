@@ -17,7 +17,10 @@ const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
       君の物欲を調べてあげよう🤪
     </div>,
   );
-  const [text, setText] = useState("");
+  // ?name= の取得
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get("name");
+  const [text, setText] = useState(name ?? "");
   const [showButton, setShowButton] = useState<boolean>(false);
 
   const handleClick = () => {
