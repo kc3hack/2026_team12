@@ -1,7 +1,12 @@
 @import "tailwindcss";
 
-@layer base {
-  body {
-    @apply m-0 bg-slate-900 text-slate-100;
-  }
+html {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(15, 23, 42);
+  color: rgb(226, 232, 240);
+  overflow: hidden;
 }

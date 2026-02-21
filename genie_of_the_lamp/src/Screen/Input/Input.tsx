@@ -12,19 +12,35 @@ export interface IInputScreen extends InputScreen {
 }
 const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
   const [message, setMessage] = useState(
-    "やあ！私はランプのお兄さんだよ！ 君の物欲を調べてあげよう！",
+    <div style={{ textAlign: "center", margin: "0px auto" }}>
+      やあ😄<br></br>私はアルコールランプ🫙の魔人🧞だよ🥺❤️ <br></br>
+      君の物欲を調べてあげよう🤪
+    </div>,
   );
   const [text, setText] = useState("");
   const [showButton, setShowButton] = useState<boolean>(false);
 
   const handleClick = () => {
     setShowButton(true);
-    setMessage("これで大丈夫かな？");
+    setMessage(<div>これで大丈夫かな？🌕</div>);
   };
 
   return (
-    <div className="space-y-6 min-h-screen flex flex-col items-center justify-center bg-slate-900 text-white">
-      <div className="flex w-150 h-64 bg-gray-200 text-black px-4 py-2 rounded-2xl ml-80 text-4xl text-center items-center">
+    <div
+      className="space-y-6 min-h-screen flex flex-col items-center justify-center text-black"
+      style={{ backgroundColor: "#e0ffff" }}
+    >
+      <div
+        className="flex text-black rounded-2xl text-3xl text-center items-center"
+        style={{
+          width:"75%",
+          height:"12rem",
+          backgroundColor: "#fffacd",
+          fontSize: "1.5rem",
+          padding: "0.5rem 1rem",
+          marginLeft: "5rem",
+        }}
+      >
         {message}
       </div>
       {!showButton && (
@@ -35,13 +51,20 @@ const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
               setText(e.target.value);
             }}
             placeholder="ここに調べたいものを入力"
-            className="text-black bg-gray-100 rounded-md text-center w-100 h-10 ml-80"
+            className="text-black bg-gray-100 rounded-md text-center h-10"
+            style={{ width: "25rem", fontSize: "1rem", marginLeft: "5rem" }}
           />
           {/* <p>{text}</p> */}
           <div>
             <button
               onClick={handleClick}
-              className="mt-4 rounded-xl bg-cyan-300 px-8 py-3 text-lg font-semibold text-purple-900 shadow-lg transition hover:bg-yellow-300 active:scale-95 ml-200"
+              className="rounded-xl bg-cyan-300 font-semibold text-black shadow-lg transition hover:bg-yellow-300 active:scale-95"
+              style={{
+                fontSize: "1.125rem",
+                padding: "0.75rem 2rem",
+                marginTop: "1rem",
+                marginLeft: "5rem",
+              }}
             >
               決定
             </button>
@@ -50,7 +73,15 @@ const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
       )}
       {showButton && (
         <div>
-          <p className="text-white rounded-md text-center w-100 h-10 ml-80 px-8 py-2 text-2xl">
+          <p
+            className="text-black rounded-md text-center h-10"
+            style={{
+              width: "25rem",
+              fontSize: "1.5rem",
+              padding: "0.5rem 2rem",
+              marginLeft: "5rem",
+            }}
+          >
             調べるもの：{text}
           </p>
           <button
@@ -60,7 +91,13 @@ const InputScene = ({ onConfirm, children = <></> }: IInputScreen) => {
                 name: text,
               })
             }
-            className="mt-4 rounded-xl bg-cyan-300 px-8 py-3 text-lg font-semibold text-purple-900 shadow-lg transition hover:bg-yellow-300 active:scale-95 ml-200"
+            className="rounded-xl bg-cyan-300 font-semibold text-black shadow-lg transition hover:bg-yellow-300 active:scale-95"
+            style={{
+              fontSize: "1.125rem",
+              padding: "0.75rem 2rem",
+              marginTop: "1rem",
+              marginLeft: "5rem",
+            }}
           >
             次へ
           </button>

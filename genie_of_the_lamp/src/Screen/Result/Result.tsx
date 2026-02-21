@@ -28,35 +28,41 @@ const ResultScene = ({ finalScore, itemName, onRetry }: IResultScreen) => {
   const scorePercentage = Math.round(finalScore * 100);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-900 to-black flex flex-col items-center justify-center p-6">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center p-6 text-black"
+      style={{ backgroundColor: "#e0ffff" }}
+    >
       {/* タイトル */}
       <div className="mb-8 text-center">
-        <h1 className="text-yellow-300 text-3xl font-bold mb-2">
+        <h1 className="text-black text-3xl font-bold mb-2">
           魔神の診断結果
         </h1>
-        <p className="text-yellow-100 text-lg">「{itemName}」についての運命</p>
+        <p className="text-black text-lg">「{itemName}」についての運命</p>
       </div>
 
       {/* 結果カード */}
-      <div className="bg-black/50 border-2 border-yellow-400 rounded-lg p-8 mb-8 max-w-2xl text-center">
+      <div
+        className="border-2 border-yellow-400 rounded-lg p-8 mb-8 max-w-2xl text-center"
+        style={{ backgroundColor: "#fffacd" }}
+      >
         {/* スコア表示 */}
         <div className="mb-6">
-          <div className={`text-6xl font-bold ${resultInfo.color} mb-2`}>
+          <div className="text-6xl font-bold text-black mb-2">
             {scorePercentage}%
           </div>
-          <div className="text-gray-300 text-sm">購買推奨度</div>
+          <div className="text-black text-sm">購買推奨度</div>
         </div>
 
         {/* 結果メッセージ */}
         <div className="mb-6">
-          <h2 className={`text-2xl font-bold ${resultInfo.color} mb-2`}>
+          <h2 className="text-2xl font-bold text-black mb-2">
             {resultInfo.emoji} {resultInfo.message}
           </h2>
-          <p className="text-yellow-100 text-lg">{resultInfo.description}</p>
+          <p className="text-black text-lg">{resultInfo.description}</p>
         </div>
 
         {/* プログレスバー */}
-        <div className="w-full bg-gray-700 rounded-full h-4 mb-4">
+        <div className="w-full bg-gray-300 rounded-full h-4 mb-4">
           <div
             className={`h-4 rounded-full bg-gradient-to-r ${resultInfo.bgColor}`}
             style={{ width: `${scorePercentage}%` }}
@@ -67,7 +73,7 @@ const ResultScene = ({ finalScore, itemName, onRetry }: IResultScreen) => {
       {/* アクションボタン */}
       <button
         onClick={onRetry}
-        className="bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-semibold py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg border-2 border-yellow-300"
+        className="bg-yellow-300 hover:bg-yellow-200 text-black font-semibold py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg border-2 border-yellow-300"
       >
         もう一度診断する
       </button>
