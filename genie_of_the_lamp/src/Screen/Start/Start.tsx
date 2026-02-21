@@ -16,21 +16,24 @@ const StartScene = ({ onStart, children }: IStartScene) => {
   const explanation = "説明文章";
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-900 text-white">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center text-black"
+      style={{ backgroundColor: "#e0ffff" }}
+    >
       {/* アプリ名 */}
-      <h1 className="text-4xl font-bold text-white flex justify-center">
+      <h1 className="text-4xl font-bold text-black flex justify-center">
         {appName}
       </h1>
 
       {/* 説明文 */}
-      <p className="max-w-md text-lg leading-relaxed text-slate-200 ">
+      <p className="max-w-md text-lg leading-relaxed text-black">
         {explanation}
       </p>
 
       {/* 開始ボタン */}
       <button
         onClick={onStart}
-        className="mt-4 rounded-xl bg-cyan-300 px-6 py-3 text-lg font-semibold text-purple-900 shadow-lg transition hover:bg-yellow-300 active:scale-95"
+        className="mt-4 rounded-xl bg-yellow-300 px-6 py-3 text-lg font-semibold text-black shadow-lg transition hover:bg-yellow-200 active:scale-95"
       >
         判定を開始する
       </button>
