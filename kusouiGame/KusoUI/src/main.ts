@@ -1,6 +1,7 @@
 import { Application } from "pixi.js";
 import ContainerParent from "./object/parent";
 import Kaki from "./object/kak";
+import Player from "./object/player";
 
 (async () => {
 	const app = new Application();
@@ -8,6 +9,10 @@ import Kaki from "./object/kak";
 	document.getElementById("pixi-container")!.appendChild(app.canvas);
 	ContainerParent.SetUp(app);
 
-	new Kaki();
+	const player = new Player();
+	player.addChild(new Kaki());
+
+	app.stage.addChild(player);
+	app.ticker.add(player.update);
 	
 })();

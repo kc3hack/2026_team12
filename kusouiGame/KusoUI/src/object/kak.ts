@@ -1,18 +1,16 @@
-import { Assets, Ticker } from "pixi.js";
-import ContainerParent, { AlwaysExcusable } from "./parent";
+import { Assets, Sprite, Ticker } from "pixi.js";
+import { AlwaysExcusable } from "./parent";
 import { NormPosition } from "./n_sprite";
 
-export default class Kaki extends AlwaysExcusable {
+export default class Kaki extends Sprite implements AlwaysExcusable {
     private n_p : NormPosition ;
     private ph : number = 0;
     constructor(){
-        const app = ContainerParent.Get();
         super();
         this.n_p = new NormPosition(this) ;
         this.init();
-        app.addDynamic(this);
         this.scale.set(0.2,0.2);
-        
+        this.anchor.set(0.5, 0.5);
     }
     private async init(){
         this.texture = await Assets.load("/Assets/kaki.png");

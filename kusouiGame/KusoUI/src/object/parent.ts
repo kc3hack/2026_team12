@@ -1,10 +1,10 @@
-import { Application, Container, Sprite, Ticker } from "pixi.js";
+import { Application, Container, Ticker } from "pixi.js";
 import Vector2 from "../math/vector2";
 
 interface IContainerParent {
     app:Application;
 }
-export abstract class AlwaysExcusable extends Sprite {
+export abstract class AlwaysExcusable extends Container {
     constructor(){
         super();
     }

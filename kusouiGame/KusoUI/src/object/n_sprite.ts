@@ -16,17 +16,17 @@ export class NormPosition {
     }
 
     public set (v2:V2L) {
-        if(v2.x) this.container.x = v2.x*this.size.x ;
-        if(v2.y) this.container.y = v2.y*this.size.y ;
+        if(v2.x !== undefined) this.container.x = v2.x*this.size.x ;
+        if(v2.y !== undefined) this.container.y = v2.y*this.size.y ;
     }
     public add (v2:V2L) {
-        if(v2.x) this.container.x += v2.x*this.size.x ;
-        if(v2.y) this.container.y += v2.y*this.size.y ;
+        if(v2.x !== undefined) this.container.x += v2.x*this.size.x ;
+        if(v2.y !== undefined) this.container.y += v2.y*this.size.y ;
     }
     public get () : V2 {
         return {
-            x: this.size.x / this.container.x ,
-            y: this.size.y / this.container.y ,
+            x: this.container.x / this.size.x ,
+            y: this.container.y / this.size.y ,
         }
     }
 }
