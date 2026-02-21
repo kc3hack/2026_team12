@@ -9,13 +9,23 @@
         { "label": "多分そう 部分的にそう", "effect": { "weight": 1.15 } },
         { "label": "多分違う そうでもない", "effect": { "weight": 0.85 } }
       ]
+    },
+    {
+      "key": "reverse",
+      "labels": [
+        { "label": "はい", "effect": { "weight": 0.5 } },
+        { "label": "いいえ", "effect": { "weight": 1.5 } },
+        { "label": "わからない", "effect": { "weight": 1.0 } },
+        { "label": "多分そう 部分的にそう", "effect": { "weight": 0.85 } },
+        { "label": "多分違う そうでもない", "effect": { "weight": 1.15 } }
+      ]
     }
   ],
   "questions": [
     {
       "id": "q1",
       "text": "それは、今持っているもので代用できませんか？",
-      "options": "normal",
+      "options": "reverse",
       "filter": ["all"]
     },
     {
@@ -45,6 +55,60 @@
     {
       "id": "q6",
       "text": "それに関連する販売ページやレビューを閲覧しましたか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q7",
+      "text": "買わない方がいい理由を3つ以上思いつきますか？",
+      "options": "reverse",
+      "filter": ["all"]
+    },
+    {
+      "id": "q8",
+      "text": "それを手に入れるために、今持っている何かを一つ手放せますか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q9",
+      "text": "それを置く（収納する）具体的な場所は、今すぐ空いていますか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q10",
+      "text": "それは『理想の自分』ではなく、『今の生活の自分』が使うものですか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q11",
+      "text": "もしそれがSNSに投稿禁止（誰にも言えない）だとしても、買いますか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q12",
+      "text": "それを使い切るまで、他の新しい同種製品に目移りしない自信がありますか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q13",
+      "text": "今この瞬間の「欲しい」という熱量は、24時間前にもありましたか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q14",
+      "text": "ブランド名やロゴが一切なくても、その機能とデザインに惚れていますか？",
+      "options": "normal",
+      "filter": ["all"]
+    },
+    {
+      "id": "q15",
+      "text": "もし誰かに「それ、いらないんじゃない？」と言われたら、感情的にならずに反論できますか？",
       "options": "normal",
       "filter": ["all"]
     }
