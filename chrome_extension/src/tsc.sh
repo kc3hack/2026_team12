@@ -1,2 +1,2 @@
-tsc ./content.ts
-mv ./content.js ../bin/
+tsc ./*.ts
+mv ./*.js ../bin/
