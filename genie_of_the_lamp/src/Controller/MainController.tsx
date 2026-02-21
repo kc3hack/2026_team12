@@ -5,6 +5,7 @@ import InputScene from "../Screen/Input/Input";
 import QuestionScene from "../Screen/Question/Question";
 import ResultScene from "../Screen/Result/Result";
 import DefaultScreenController from "./ScreenController/ScreenController.tsx";
+import "./extensionListener.ts" ;
 
 export interface IMainController {
   onScreenChange?: (screenType: string) => void;

@@ -4,7 +4,7 @@
   "version": "1.0",
   "manifest_version": 3,
   "action": {
-    "default_popup": "src/index.html",
+    "default_popup": "bin/index.html",
     "default_icon": "images/extension_icon.png"
   },
   "icons": {
@@ -15,7 +15,7 @@
   },
   "content_scripts": [
     {
-      "js": ["src/content.js"],
+      "js": ["bin/content.js"],
       "matches": [
         "https://www.amazon.co.jp/*"
       ]
