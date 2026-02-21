@@ -2,8 +2,13 @@
  * 誰かに読ませる気ははなからないコードを書いています。
  * 評価の人ごめんなさい。
  */
-
 const MAIN_PAGE_URL = "http://localhost:5173";
+
+declare namespace chrome {
+  namespace runtime {
+    function getURL(path: string): string;
+  }
+}
 
 const mainPage = new (class {
     private iframe? : HTMLIFrameElement ;
@@ -64,9 +69,9 @@ const subPage = new Map<string,Page>([
             this.sprite.style.width = "20rem" ;
             this.sprite.style.zIndex = "100000" ;
             this.updateSprite(
-                `いやー！❤️<br>
-                ランプの魔人だよ😄<br>
-                （アルコール）`
+                `<p>いやー！❤️</p>
+                <p>ランプの魔人だよ😄</p>
+                `
             );
             this.sprite.id = "inner_sprite";
             this.sprite.addEventListener("click",this.onSprite);
@@ -91,17 +96,17 @@ const subPage = new Map<string,Page>([
                     height:14rem;
                     font-size:1.5rem;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
                     justify-content: center;
                     flex-shrink: 0;
+                    padding:0.8rem;
                 }
                 </style>
             `;
         }
         private onSprite = ()=>{
-            console.log(this.pItem);
             const sendData = encodeURIComponent(this.pItem);
-            console.log(sendData);
             open(`${MAIN_PAGE_URL}/?name=${sendData}`);
         }
         private intervalSetup (){
@@ -125,12 +130,14 @@ const subPage = new Map<string,Page>([
                     this.pItem = IElm.value ;
                     if(IElm.value==""){
                         this.updateSprite(`
-                            アルコールランプ🪔のまじんだよ?<br>
-                            何を買うのかな？
+                            <p>アルコールランプ🪔のまじんだよ?</p>
+                            <p>何を買うのかな？</p>
                         `);
                     }else{
                         this.updateSprite( `
-                            君は${IElm.value}が欲しいのかな？？
+                            <p>君は</p>
+                            <p>${IElm.value}</p>
+                            <p>が欲しいのかな？？</p>
                         `);
                     }
                 })
