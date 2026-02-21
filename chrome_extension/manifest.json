@@ -20,5 +20,11 @@
         "https://www.amazon.co.jp/*"
       ]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["images/*.png", "images/*.jpg","bin/Assets/*.png"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }
