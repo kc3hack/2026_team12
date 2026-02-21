@@ -53,10 +53,11 @@ var subPage = new Map([
                 this.pItem = "";
                 this.isStartInterval = false;
                 this.onSprite = function () {
-                    console.log(_this.pItem);
                     var sendData = encodeURIComponent(_this.pItem);
-                    console.log(sendData);
-                    open("".concat(MAIN_PAGE_URL, "/?name=").concat(sendData));
+                    var windowName = "subWindow";
+                    var windowFeatures = "width=400,height=600,menubar=no,toolbar=no,location=no";
+                    window.open("".concat(MAIN_PAGE_URL, "/?name=").concat(sendData), windowName, windowFeatures);
+                    console.log("".concat(MAIN_PAGE_URL, "/?name=").concat(sendData));
                 };
                 this.isItemEventSet = false;
                 this.sprite.style.position = "fixed";
@@ -64,14 +65,14 @@ var subPage = new Map([
                 this.sprite.style.left = "0rem";
                 this.sprite.style.width = "20rem";
                 this.sprite.style.zIndex = "100000";
-                this.updateSprite("\u3044\u3084\u30FC\uFF01\u2764\uFE0F<br>\n                \u30E9\u30F3\u30D7\u306E\u9B54\u4EBA\u3060\u3088\uD83D\uDE04<br>\n                \uFF08\u30A2\u30EB\u30B3\u30FC\u30EB\uFF09");
+                this.updateSprite("<p>\u3044\u3084\u30FC\uFF01\u2764\uFE0F</p>\n                <p>\u30E9\u30F3\u30D7\u306E\u9B54\u4EBA\u3060\u3088\uD83D\uDE04</p>\n                ");
                 this.sprite.id = "inner_sprite";
                 this.sprite.addEventListener("click", this.onSprite);
                 this.page.appendChild(this.sprite);
             }
             P1.prototype.updateSprite = function (text) {
                 var imageUrl = chrome.runtime.getURL("bin/Assets/kakiuchi.png");
-                this.sprite.innerHTML = "\n                <div style=\"display: flex; align-items: center; gap: 1rem;\">\n                    <img src=\"".concat(imageUrl, "\" style=\"flex-shrink: 0; width: 12rem; height: 20rem;\">\n                    <div class=\"bubble\">\n                        ").concat(text, "\n                    </div>\n                </div>\n                <style>\n                .bubble{\n                    border-radius:1rem;\n                    border:1px double;\n                    text-align:center;\n                    background-color:white;\n                    width:21rem;\n                    height:14rem;\n                    font-size:1.5rem;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    flex-shrink: 0;\n                }\n                </style>\n            ");
+                this.sprite.innerHTML = "\n                <div style=\"display: flex; align-items: center; gap: 1rem;\">\n                    <img src=\"".concat(imageUrl, "\" style=\"flex-shrink: 0; width: 12rem; height: 20rem;\">\n                    <div class=\"bubble\">\n                        ").concat(text, "\n                    </div>\n                </div>\n                <style>\n                .bubble{\n                    border-radius:1rem;\n                    border:1px double;\n                    text-align:center;\n                    background-color:white;\n                    width:21rem;\n                    height:14rem;\n                    font-size:1.5rem;\n                    display: flex;\n                    flex-direction: column;\n                    align-items: center;\n                    justify-content: center;\n                    flex-shrink: 0;\n                    padding:0.8rem;\n                }\n                </style>\n            ");
             };
             P1.prototype.intervalSetup = function () {
                 var _this = this;
@@ -94,10 +95,10 @@ var subPage = new Map([
                         var IElm = e.target;
                         _this.pItem = IElm.value;
                         if (IElm.value == "") {
-                            _this.updateSprite("\n                            \u30A2\u30EB\u30B3\u30FC\u30EB\u30E9\u30F3\u30D7\uD83E\uDE94\u306E\u307E\u3058\u3093\u3060\u3088?<br>\n                            \u4F55\u3092\u8CB7\u3046\u306E\u304B\u306A\uFF1F\n                        ");
+                            _this.updateSprite("\n                            <p>\u30A2\u30EB\u30B3\u30FC\u30EB\u30E9\u30F3\u30D7\uD83E\uDE94\u306E\u307E\u3058\u3093\u3060\u3088?</p>\n                            <p>\u4F55\u3092\u8CB7\u3046\u306E\u304B\u306A\uFF1F</p>\n                        ");
                         }
                         else {
-                            _this.updateSprite("\n                            \u541B\u306F".concat(IElm.value, "\u304C\u6B32\u3057\u3044\u306E\u304B\u306A\uFF1F\uFF1F\n                        "));
+                            _this.updateSprite("\n                            <p>\u541B\u306F</p>\n                            <p>".concat(IElm.value, "</p>\n                            <p>\u304C\u6B32\u3057\u3044\u306E\u304B\u306A\uFF1F\uFF1F</p>\n                        "));
                         }
                     });
                     this.isItemEventSet = true;

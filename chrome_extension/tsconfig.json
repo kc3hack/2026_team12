@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "./bin",
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.ts","src/**/*.d.ts"],
+  "exclude": ["node_modules", "bin"],
+  "types": ["chrome-types"],
+  "lib": ["ES2020", "DOM", "DOM.Iterable"]
+}
