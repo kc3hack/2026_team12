@@ -54,10 +54,7 @@ var subPage = new Map([
                 this.isStartInterval = false;
                 this.onSprite = function () {
                     var sendData = encodeURIComponent(_this.pItem);
-                    var windowName = "subWindow";
-                    var windowFeatures = "width=400,height=600,menubar=no,toolbar=no,location=no";
-                    window.open("".concat(MAIN_PAGE_URL, "/?name=").concat(sendData), windowName, windowFeatures);
-                    console.log("".concat(MAIN_PAGE_URL, "/?name=").concat(sendData));
+                    open("".concat(MAIN_PAGE_URL, "/?name=").concat(sendData));
                 };
                 this.isItemEventSet = false;
                 this.sprite.style.position = "fixed";
