@@ -5,7 +5,7 @@ import InputScene from "../Screen/Input/Input";
 import QuestionScene from "../Screen/Question/Question";
 import ResultScene from "../Screen/Result/Result";
 import DefaultScreenController from "./ScreenController/ScreenController.tsx";
-import "./extensionListener.ts" ;
+import "./extensionListener.ts";
 
 export interface IMainController {
   onScreenChange?: (screenType: string) => void;
@@ -83,7 +83,7 @@ const MainController: React.FC<IMainController> = ({ onScreenChange }) => {
       <DefaultScreenController {...screenController} />
 
       {/* デバッグパネル（開発環境のみ） */}
-      {import.meta.env.DEV && (
+      {/* {import.meta.env.DEV && (
         <div className="fixed bottom-4 right-4 bg-black/80 text-white p-2 rounded text-xs z-50">
           <p>Render Key: {renderKey}</p>
           <button
@@ -93,7 +93,7 @@ const MainController: React.FC<IMainController> = ({ onScreenChange }) => {
             Force Update
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
