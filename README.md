@@ -70,6 +70,12 @@
 ## 使用技術
 
 <!-- 使用技術を入力してください -->
+- Typescript
+  - React
+  - Vite
+- JavaScript
+  - Chrome extension
+  - [こちら](https://developer.chrome.com/docs/extensions?hl=ja)を参照
 
 <!--
 markdownの記法はこちらを参照してください！
