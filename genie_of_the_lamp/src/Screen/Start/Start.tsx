@@ -13,7 +13,6 @@ interface IStartScene extends StartScreen {
 const StartScene = ({ onStart, children }: IStartScene) => {
   // タイトルと説明はコンポーネント内で変数として定義
   const appName = "衝動買いアキネーター";
-  const explanation = "説明文章";
 
   return (
     <div
@@ -25,10 +24,10 @@ const StartScene = ({ onStart, children }: IStartScene) => {
         {appName}
       </h1>
 
-      {/* 説明文 */}
+      {/* 説明文
       <p className="max-w-md text-lg leading-relaxed text-black">
         {explanation}
-      </p>
+      </p> */}
 
       {/* 開始ボタン */}
       <button
